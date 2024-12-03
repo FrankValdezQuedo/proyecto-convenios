@@ -4,6 +4,7 @@ import Header from "./componentes/Header";
 import Footer from "./componentes/Footer";
 import AcercaDe from "./componentes/AcerdeDe";
 import Convenios from "./componentes/Convenios";
+import Contactos from "./componentes/Contactos";
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<AcercaDe />} />
           <Route path="/convenios" element={<Convenios />} />
+          <Route path="/contactos" element={<Contactos />} />
         </Routes>
       </main>
       <Footer />
