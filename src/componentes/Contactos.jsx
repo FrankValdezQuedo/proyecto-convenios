@@ -1,23 +1,27 @@
 import React, { useState } from "react";
-import { Mail, User, MessageCircle } from "lucide-react";
+import { Mail, User, MessageCircle } from "lucide-react"; // Iconos utilizados en el formulario y la información de contacto
 
 const Contactos = () => {
+  // Estado para manejar los datos del formulario
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
   });
 
+  // Estado para manejar los errores de validación del formulario
   const [errors, setErrors] = useState({});
 
+  // Maneja los cambios en los campos del formulario
   const handleChange = (e) => {
     const { id, value } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [id]: value,
+      [id]: value, // Actualiza el valor del campo correspondiente en el estado
     }));
   };
 
+  // Valida los campos del formulario
   const validateForm = () => {
     const newErrors = {};
 
@@ -25,7 +29,7 @@ const Contactos = () => {
       newErrors.name = "El nombre es requerido";
     }
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Patrón para validar correos electrónicos
     if (!formData.email.trim()) {
       newErrors.email = "El correo electrónico es requerido";
     } else if (!emailRegex.test(formData.email)) {
@@ -36,23 +40,24 @@ const Contactos = () => {
       newErrors.message = "El mensaje es requerido";
     }
 
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
+    setErrors(newErrors); // Guarda los errores encontrados
+    return Object.keys(newErrors).length === 0; // Devuelve true si no hay errores
   };
 
+  // Maneja el envío del formulario
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (validateForm()) {
-      console.log("Form submitted:", formData);
+      console.log("Form submitted:", formData); // Simula el envío de datos
 
       setFormData({
         name: "",
         email: "",
         message: "",
-      });
+      }); // Limpia el formulario
 
-      alert("Mensaje enviado exitosamente");
+      alert("Mensaje enviado exitosamente"); // Notificación al usuario
     }
   };
 
@@ -60,7 +65,7 @@ const Contactos = () => {
     <div className="container my-5">
       <h2 className="text-center mb-4 text-primary">Contáctanos</h2>
       <div className="row">
-        {/* Contact Information Section */}
+        {/* Sección de Información de Contacto */}
         <div className="col-md-6 mb-4">
           <div className="card h-100 shadow-sm">
             <div className="card-body">
@@ -93,7 +98,7 @@ const Contactos = () => {
           </div>
         </div>
 
-        {/* Form Section */}
+        {/* Sección de Formulario */}
         <div className="col-md-6">
           <div className="card shadow-sm">
             <div className="card-body">
@@ -102,6 +107,7 @@ const Contactos = () => {
                 Consulta
               </h4>
               <form onSubmit={handleSubmit}>
+                {/* Campo Nombre */}
                 <div className="mb-3">
                   <label htmlFor="name" className="form-label">
                     <User className="me-2" /> Nombre
@@ -121,6 +127,7 @@ const Contactos = () => {
                   )}
                 </div>
 
+                {/* Campo Correo Electrónico */}
                 <div className="mb-3">
                   <label htmlFor="email" className="form-label">
                     <Mail className="me-2" /> Correo Electrónico
@@ -140,6 +147,7 @@ const Contactos = () => {
                   )}
                 </div>
 
+                {/* Campo Mensaje */}
                 <div className="mb-3">
                   <label htmlFor="message" className="form-label">
                     <MessageCircle className="me-2" /> Mensaje
@@ -159,6 +167,7 @@ const Contactos = () => {
                   )}
                 </div>
 
+                {/* Botón de Envío */}
                 <button type="submit" className="btn btn-primary w-100">
                   Enviar
                 </button>
